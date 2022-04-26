@@ -1,24 +1,40 @@
-# README
+#テーブル設計
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+##usersテーブル
+| Column             | Type       | Options                        |
+| ------------------ | ---------- | ------------------------------ |
+| nickname           | string     | null: false                    |
+| encrypted_password | string     | null: false                    |
+| cooking_history_id | text       | null: false                    |
+| introduction       | text       | null: false                    |
 
-Things you may want to cover:
+###Association
+-has_many :recipes
+-has_many :favorites
 
-* Ruby version
+##recipesテーブル
+| Column             | Type       | Options                        |
+| ------------------ | -----------| ------------------------------ |
+| title              | string     | null: false                    |
+| cooking_time_id    | integer    | null: false                    |
+| category_id        | integer    | null: false                    |
+| quantity-id        | integer    | null: false                    |
+| ingredients        | text       | null: false                    |
+| process            | text       | null: false                    |
+| point              | text       | null: false                    |
+| extra              | text       |                                |
+| user               | references | null: false, foreign_key: true |
 
-* System dependencies
+##Association
+-belongs_to :user
+-has_many :favorites
 
-* Configuration
+##favoritesテーブル
+| Column             | Type       | Options                        |
+| ------------------ | -----------| ------------------------------ |
+| user               | references | null: false, foreign_key: true |
+| recipe             | references | null: false, foreign_key: true |
 
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+###Association
+-belongs_to :user
+-belongs_to :recipe
