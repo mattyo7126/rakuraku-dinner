@@ -1,0 +1,34 @@
+<div class="main">
+  <div class='title_contents'>
+    <%= image_tag "top_image.jpeg", class:"top-image", alt:"トップ画像" %>
+      <%= link_to new_recipe_path do %>
+        <%=image_tag "plus_btn.png", class:"plus-btn", alt:"レシピ投稿ボタン" %>
+      <% end %> 
+  </div>
+
+ <div class='recipe-contents'>
+    <h2 class='title'>レシピ一覧</h2>
+    <ul class='recipe-lists'>
+      <% @recipes.each do |recipe| %>
+        <li class='list'>
+        <%= link_to recipe_path(recipe.id) do %>
+          <div class='recipe-img-content'>
+            <%= image_tag recipe.image, class: "recipe-img" %>
+          </div>
+        <% end %>
+          <div class='recipe-info'>
+            <h3 class='recipe-title'>
+              <%= recipe.title %>
+            </h3>
+          <div class='cooking-time'>
+            <%= recipe.cooking_time.name %>
+          </div>
+        </li>
+      <% end %> 
+    </ul> 
+  </div>
+</div>
+
+
+
+
